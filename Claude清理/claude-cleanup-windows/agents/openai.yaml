@@ -1,0 +1,4 @@
+interface:
+  display_name: "Claude Windows 清理"
+  short_description: "审计并备份 Windows 上的 Claude 数据，可恢复清理缓存日志并保护会话与配置"
+  default_prompt: "使用 $claude-cleanup-windows 先审计这台 Windows 的 Claude 本机状态，列出清理计划和保护范围，确认后再执行。"
