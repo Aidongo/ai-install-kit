@@ -56,11 +56,13 @@ Clash Verge 网络配置与 Claude 本机清理的安装流程和配套文件。
 
 #### 1.4 开启代理
 
-「代理」页选「规则」模式和节点 → 「设置」打开「系统代理」。
+1. 「代理」页选「规则」模式和节点。
+2. 「设置」页打开「系统代理」和「虚拟网卡模式」（TUN）。开 TUN 时如果提示安装服务，按提示安装并授权（Mac 输入开机密码，Windows 点「是」）。
+3. 「设置」页「Clash 设置」里关闭「IPv6」。
 
 ### 第 2 章 浏览器配置
 
-开启代理后再做。安装 Brave 和 WebRTC 插件，然后在 Brave 里完成网络测试。
+开启代理后再做。安装 Brave 和 WebRTC 插件，在 Brave 里完成网络测试，再用隐私窗口打开 Claude。
 
 #### 2.1 安装 Brave 浏览器
 
@@ -85,6 +87,7 @@ Clash Verge 网络配置与 Claude 本机清理的安装流程和配套文件。
 1. 用 Brave 打开 [WebRTC Leak Prevent](https://chromewebstore.google.com/detail/webrtc-leak-prevent/eiadekoaikejlgdbkbdfeijglgfdalml) → 「添加至 Chrome」→「添加扩展程序」。
 2. 地址栏右侧拼图图标 → WebRTC Leak Prevent 旁的「⋮」→「选项」。
 3. 「IP handling policy」选 `Disable non-proxied UDP (force proxy)`，点「Apply settings」。
+4. 地址栏打开 `brave://extensions` → WebRTC Leak Prevent 的「详细信息」→ 打开「在隐私窗口中允许」（Allow in Private）。2.4 的隐私窗口里插件才会生效。
 
 #### 2.3 测试网络环境
 
@@ -99,7 +102,17 @@ Clash Verge 网络配置与 Claude 本机清理的安装流程和配套文件。
 | 5 | Claude 出口 IP | [ip.net.coffee/claude](https://ip.net.coffee/claude/) | 显示住宅 IP，不是机房、Tor 或高风险 IP |
 
 - 第 2 项只用白名单内的网站测，例如 163.com、alipay.com、feishu.cn。
-- 第 4 项不通过时，先确认 WebRTC Leak Prevent 已按 2.2 设置；仍不通过，到 Clash「设置」打开 TUN 模式后重测。
+- 第 4 项不通过时，先确认 WebRTC Leak Prevent 已按 2.2 设置，以及 1.4 的 TUN 已打开、IPv6 已关闭，然后重测。
+
+#### 2.4 用隐私窗口打开 Claude
+
+每次在 Brave 里用 Claude 前，先清掉之前的记录，再开隐私窗口。
+
+1. 清除浏览数据：Brave 右上角菜单 ≡ →「删除浏览数据」（Mac `⌘⇧⌫`，Windows `Ctrl+Shift+Delete`）→ 时间范围选「时间不限」，勾选「浏览记录」「Cookie 及其他网站数据」「缓存的图片和文件」→「删除数据」。
+2. 打开隐私窗口：菜单 ≡ →「新建隐私窗口」（Mac `⌘⇧N`，Windows `Ctrl+Shift+N`）。不要用带 Tor 的隐私窗口。
+3. 在隐私窗口里打开 [claude.ai](https://claude.ai)。
+
+关掉隐私窗口后登录状态会清空，下次用 Claude 时重新按这三步来。
 
 ### 第 3 章 Claude 环境清理
 
